@@ -20,7 +20,7 @@ export default class ControlPanel extends Component {
       <ScrollView style={styles.container}>
         <Text style={styles.controlText}>Control Panel</Text>
         <TouchableOpacity style={styles.button} onPress={() => NavigationService.navigate('Details')}>
-          <Text>Close Drawer</Text>
+          <Text>Navigate to detail Screen</Text>
         </TouchableOpacity>
       </ScrollView>
     )

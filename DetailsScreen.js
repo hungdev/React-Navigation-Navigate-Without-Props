@@ -12,10 +12,10 @@ export default class DetailScreen extends React.Component {
   render () {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
+        <Text>Detail Screen</Text>
         <Button
-          title='Go to Details'
-          onPress={() => this.props.navigation.navigate('Details')}
+          title='Button'
+          onPress={() => alert('DetailScreen')}
         />
       </View>
     )
