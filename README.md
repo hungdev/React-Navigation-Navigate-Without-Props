@@ -1,20 +1,5 @@
-# React Native Redux Example
+# React Navigation Navigating without the navigation props Example
 
-To get started:
+read more here
 
-1. Clone repo   
-```
-git clone https://github.com/react-native-training/basic-react-native-redux-example.git
-```
-
-2. Install dependencies   
-```
-npm i || yarn
-```
-
-3. Start packager   
-```
-npm start
-```
-
-4. Run on device of choice.
+https://reactnavigation.org/docs/en/navigating-without-navigation-prop.html
