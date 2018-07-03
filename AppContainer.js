@@ -2,7 +2,7 @@ import React from 'react'
 import './ReactotronConfig'
 
 import { Button, View, Text, AppRegistry } from 'react-native'
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation'
 
 import { Provider } from 'react-redux'
 import configureStore from './configureStore'
@@ -16,7 +16,7 @@ import ControlPanel from './ControlPanel'
 
 const store = configureStore()
 
-const TopLevelNavigator = createStackNavigator(
+const TopLevelNavigator = createDrawerNavigator(
   {
     Home: HomeScreen,
     Details: DetailsScreen
@@ -46,50 +46,11 @@ export default class AppWithNavigationState extends React.Component {
 
   render () {
     return (
-      <Drawer
-        ref={(ref) => this._leftDrawer = ref}
-        type='overlay'
-        content={<ControlPanel
-          screenProps={this.props}
-          closeControlPanel={() => this.closeLeftControlPanel()}
-          openControlPanel={() => this.openLeftControlPanel()}
-        />}
-        openDrawerOffset={0.2}
-        tapToClose
-        side='left'
-        captureGestures
-        onOpen={() => {
-          this.setState({ isLeftDrawerOpened: true })
+      <TopLevelNavigator
+        ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef)
         }}
-        onClose={() => this.setState({ isLeftDrawerOpened: false })}
-        panOpenMask={0.05}>
-        <Drawer
-          ref={(ref) => this._drawer = ref}
-          type='overlay'
-          content={<ControlPanel
-            contacts={this.state.contacts}
-            screenProps={this.props}
-            closeControlPanel={() => this.closeControlPanel()}
-            openControlPanel={() => this.openControlPanel()}
-            searchContact={(contact) => this.onSearchContact(contact)}
-
-          />}
-          openDrawerOffset={0.2}
-          tapToClose
-          onOpen={() => {
-            this.setState({ isRightDrawerOpened: true })
-          }}
-          onClose={() => { this.setState({ isRightDrawerOpened: false }) }}
-          side='right'
-          captureGestures
-          panOpenMask={0.05}>
-          <TopLevelNavigator
-            ref={navigatorRef => {
-              NavigationService.setTopLevelNavigator(navigatorRef)
-            }}
-          />
-        </Drawer>
-      </Drawer>
+      />
     )
   }
 }
